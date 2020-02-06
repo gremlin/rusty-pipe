@@ -15,7 +15,9 @@ jobs:
       run: rustup component remove rust-docs
     - name: Install Rust
       run: rustup update stable
+    - continue-on-error: true
     - name: Remove Rust documentation
       run: rustup component remove rust-docs
+    - continue-on-error: false
     - name: Run the program
       run: cargo +stable run
