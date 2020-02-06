@@ -1,0 +1,17 @@
+name: Test #1
+on:
+  push:
+    paths:
+    - "Cargo.toml"
+    - "**.rs"
+    - ".github/workflows/test1.yml"
+jobs:
+  simple_build:
+    name: Simple Build for Windows
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Rust
+      run: rustup update stable
+    - name: Run the program
+      run: cargo +stable run
