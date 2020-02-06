@@ -42,8 +42,8 @@ jobs:
     - uses: actions/checkout@master
     - name: Hide Rust
       run: |
-        rename "$Env:USERPROFILE/.cargo" "%USERPROFILE%/.cargo_old"
-        rename "$Env:USERPROFILE/.rustup" "%USERPROFILE%/.rustup_old"
+        rename "%USERPROFILE%/.cargo" "%USERPROFILE%/.cargo_old"
+        rename "%USERPROFILE%/.rustup" "%USERPROFILE%/.rustup_old"
       shell: cmd
     - name: Download Rust .cargo image
       uses: actions/download-artifact@v1
