@@ -11,9 +11,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: "Echo HOME"
-      run: echo "%HOME%"
-      shell: cmd
+
+    - name: "Run the program"
+      run: cargo +stable run
+
     - name: "Remove Rust documentation"
       run: rustup component remove rust-docs
     - name: "Install Rust"
