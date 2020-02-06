@@ -38,6 +38,7 @@ jobs:
       with:
         name: Rust .rustup image
         path: rustup.7z
+
   timing_test:
     name: "Build using Rust images"
     needs: prepare_rust_image
@@ -53,14 +54,23 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: Rust .cargo image
-        path: "%HOME%/cargo.7z"
-#    - name: Download Rust .rustup image
-#      uses: actions/download-artifact@v1
-#      with:
-#        name: Rust .rustup image
-#        path: rustup.7z
-
-#set PATH=%PATH%;C:\Program Files\7-Zip
-#mkdir "%WHATEVER%\.cargo"
-#cd "%WHATEVER%\.cargo"
-#7z x "C:\Users\brian\Downloads\cargo.7z"
+        path: "%GITHUB_WORKSPACE%/cargo.7z"
+    - name: "Download Rust .rustup image"
+      uses: actions/download-artifact@v1
+      with:
+        name: Rust .rustup image
+        path: "%GITHUB_WORKSPACE%/rustup.7z"
+    - name: "Extract Rust .cargo image"
+      run: |
+        mkdir "%USERPROFILE%\.cargo"
+        cd "%USERPROFILE%\.cargo"
+        7z x "%GITHUB_WORKSPACE%/cargo.7z"
+      shell: cmd
+    - name: "Extract Rust .rustup image"
+      run: |
+        mkdir "%USERPROFILE%\.rustup"
+        cd "%USERPROFILE%\.rustup"
+        7z x "%GITHUB_WORKSPACE%/rustup.7z"
+      shell: cmd
+    - name: "Run the program"
+      run: cargo +stable run
