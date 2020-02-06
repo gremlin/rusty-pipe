@@ -43,38 +43,42 @@ jobs:
     name: "Build using Rust images"
     needs: prepare_rust_image
     runs-on: windows-latest
+
     steps:
+
     - uses: actions/checkout@master
+
     - name: "'Remove' Rust (it's presented as a <JUNCTION>)"
       run: |
         rmdir "%USERPROFILE%/.cargo"
         rmdir "%USERPROFILE%/.rustup"
       shell: cmd
+
     - name: "Download Rust .cargo image"
       uses: actions/download-artifact@v1
       with:
         name: cargo
         path: tmp
+
     - name: "Download Rust .rustup image"
       uses: actions/download-artifact@v1
       with:
         name: rustup
         path: tmp
 
-    - name: "Prepare the destinations"
-      run: |
-        mkdir "%USERPROFILE%/.cargo"
-        mkdir "%USERPROFILE%/.rustup"
+#    - name: "Prepare the destinations"
+#      run: |
+#        mkdir "%USERPROFILE%/.cargo"
+#        mkdir "%USERPROFILE%/.rustup"
 
     - name: "Extract Rust .cargo image"
-      run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z"
+      run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z" -o"%USERPROFILE%/.cargo" -r *
       shell: cmd
-      working-directory: "%USERPROFILE%/.cargo"
+      working-directory: 
 
     - name: "Extract Rust .rustup image"
-      run: 7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z"
+      run: 7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z" -o"%USERPROFILE%/.rustup" -r *
       shell: cmd
-      working-directory: "%USERPROFILE%/.rustup"
 
     - name: "Sanity check"
       run: |
