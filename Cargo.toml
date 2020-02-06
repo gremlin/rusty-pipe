@@ -1,0 +1,7 @@
+[package]
+name = "rusty-pipe"
+version = "0.1.0"
+authors = ["Coding Badly <bcook@rowdydog.com>"]
+edition = "2018"
+
+[dependencies]
