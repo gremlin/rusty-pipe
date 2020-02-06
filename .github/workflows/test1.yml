@@ -63,18 +63,18 @@ jobs:
 
     - name: "Prepare the destinations"
       run: |
-        mkdir "%USERPROFILE%\.cargo"
-        mkdir "%USERPROFILE%\.rustup"
+        mkdir "%USERPROFILE%/.cargo"
+        mkdir "%USERPROFILE%/.rustup"
 
     - name: "Extract Rust .cargo image"
       run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z"
       shell: cmd
-      working-directory: "%USERPROFILE%\.cargo"
+      working-directory: "%USERPROFILE%/.cargo"
 
     - name: "Extract Rust .rustup image"
       run: 7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z"
       shell: cmd
-      working-directory: "%USERPROFILE%\.rustup"
+      working-directory: "%USERPROFILE%/.rustup"
 
     - name: "Sanity check"
       run: |
