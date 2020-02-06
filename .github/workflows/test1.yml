@@ -52,7 +52,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: Rust .cargo image
-        path: %HOME%/cargo.7z
+        path: "%HOME%/cargo.7z"
 #    - name: Download Rust .rustup image
 #      uses: actions/download-artifact@v1
 #      with:
