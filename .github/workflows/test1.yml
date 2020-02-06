@@ -43,7 +43,8 @@ jobs:
     - name: Hide Rust
       run: |
         cd %USERPROFILE%
-        dir
+        echo %USERPROFILE%
+        dir %USERPROFILE%
 #        rename ".cargo" ".cargo_old"
 #        rename ".rustup" ".rustup_old"
       shell: cmd
