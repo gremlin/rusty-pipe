@@ -44,6 +44,7 @@ jobs:
       run: |
         rename "$Env:USERPROFILE/.cargo" "$Env:USERPROFILE/.cargo_old"
         rename "$Env:USERPROFILE/.rustup" "$Env:USERPROFILE/.rustup_old"
+      shell: cmd
     - name: Download Rust .cargo image
       uses: actions/download-artifact@v1
       with:
