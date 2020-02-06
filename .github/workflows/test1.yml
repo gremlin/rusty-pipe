@@ -54,12 +54,12 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: Rust .cargo image
-        path: "%GITHUB_WORKSPACE%/cargo.7z"
+        path: cargo.7z
     - name: "Download Rust .rustup image"
       uses: actions/download-artifact@v1
       with:
         name: Rust .rustup image
-        path: "%GITHUB_WORKSPACE%/rustup.7z"
+        path: rustup.7z
     - name: "Extract Rust .cargo image"
       run: |
         mkdir "%USERPROFILE%\.cargo"
