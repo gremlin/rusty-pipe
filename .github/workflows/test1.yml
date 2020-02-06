@@ -60,21 +60,27 @@ jobs:
       with:
         name: rustup
         path: tmp
-    - name: "Extract Rust .cargo image"
+
+    - name: "Prepare the destinations"
       run: |
         mkdir "%USERPROFILE%\.cargo"
-        cd "%USERPROFILE%\.cargo"
-        7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z"
-        # dir %USERPROFILE%
-        dir %GITHUB_WORKSPACE% /s
-      shell: cmd
-    - name: "Extract Rust .rustup image"
-      run: |
         mkdir "%USERPROFILE%\.rustup"
-        cd "%USERPROFILE%\.rustup"
-        7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z"
-        # dir %USERPROFILE%
-        dir %GITHUB_WORKSPACE% /s
+
+    - name: "Extract Rust .cargo image"
+      run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z"
       shell: cmd
+      working-directory: "%USERPROFILE%\.cargo"
+
+    - name: "Extract Rust .rustup image"
+      run: 7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z"
+      shell: cmd
+      working-directory: "%USERPROFILE%\.rustup"
+
+    - name: "Sanity check"
+      run: |
+        dir %GITHUB_WORKSPACE% /s
+        dir %USERPROFILE%
+      shell: cmd
+
     - name: "Run the program"
       run: cargo +stable run
