@@ -42,10 +42,10 @@ jobs:
 #    - uses: actions/checkout@master
     - name: Hide Rust
       run: |
+        cd %USERPROFILE%
         rename ".cargo" ".cargo_old"
         rename ".rustup" ".rustup_old"
       shell: cmd
-      working-directory: %USERPROFILE%
 #    - name: Download Rust .cargo image
 #      uses: actions/download-artifact@v1
 #      with:
