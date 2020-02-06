@@ -64,7 +64,7 @@ jobs:
         cd "%USERPROFILE%\.cargo"
         7z x "%GITHUB_WORKSPACE%/cargo.7z"
         dir %USERPROFILE%
-        dir %GITHUB_WORKSPACE%
+        dir %GITHUB_WORKSPACE% /s
       shell: cmd
     - name: "Extract Rust .rustup image"
       run: |
@@ -72,7 +72,7 @@ jobs:
         cd "%USERPROFILE%\.rustup"
         7z x "%GITHUB_WORKSPACE%/rustup.7z"
         dir %USERPROFILE%
-        dir %GITHUB_WORKSPACE%
+        dir %GITHUB_WORKSPACE% /s
       shell: cmd
     - name: "Run the program"
       run: cargo +stable run
