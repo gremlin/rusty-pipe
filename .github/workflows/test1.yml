@@ -11,13 +11,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-#    - name: Remove Rust documentation
-#      run: rustup component remove rust-docs
+    - name: Remove Rust documentation
+      run: rustup component remove rust-docs
     - name: Install Rust
       run: rustup update stable
-#    - name: Remove Rust documentation
-#      run: rustup component remove rust-docs
-#      continue-on-error: true
+    - name: Remove Rust documentation
+      run: rustup component remove rust-docs
+      continue-on-error: true
     - name: Run the program
       run: cargo +stable run
     - name: Archive .cargo
