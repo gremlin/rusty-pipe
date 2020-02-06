@@ -40,7 +40,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: 'Remove' Rust (it's presented as a <JUNCTION>)
+    - name: "'Remove' Rust (it's presented as a <JUNCTION>)"
       run: |
         rmdir "%USERPROFILE%\.cargo"
         rmdir "%USERPROFILE%\.rustup"
