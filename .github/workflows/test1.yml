@@ -54,24 +54,26 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: cargo
+        path: tmp
     - name: "Download Rust .rustup image"
       uses: actions/download-artifact@v1
       with:
         name: rustup
+        path: tmp
     - name: "Extract Rust .cargo image"
       run: |
         mkdir "%USERPROFILE%\.cargo"
         cd "%USERPROFILE%\.cargo"
-        7z x "%GITHUB_WORKSPACE%/cargo.7z"
-        dir %USERPROFILE%
+        7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z"
+        # dir %USERPROFILE%
         dir %GITHUB_WORKSPACE% /s
       shell: cmd
     - name: "Extract Rust .rustup image"
       run: |
         mkdir "%USERPROFILE%\.rustup"
         cd "%USERPROFILE%\.rustup"
-        7z x "%GITHUB_WORKSPACE%/rustup.7z"
-        dir %USERPROFILE%
+        7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z"
+        # dir %USERPROFILE%
         dir %GITHUB_WORKSPACE% /s
       shell: cmd
     - name: "Run the program"
