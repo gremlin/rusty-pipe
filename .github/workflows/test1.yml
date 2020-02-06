@@ -31,12 +31,12 @@ jobs:
     - name: "Upload Rust .cargo image"
       uses: actions/upload-artifact@v1
       with:
-        name: Rust .cargo image
+        name: cargo
         path: cargo.7z
     - name: "Upload Rust .rustup image"
       uses: actions/upload-artifact@v1
       with:
-        name: Rust .rustup image
+        name: rustup
         path: rustup.7z
 
   timing_test:
@@ -53,24 +53,33 @@ jobs:
     - name: "Download Rust .cargo image"
       uses: actions/download-artifact@v1
       with:
-        name: Rust .cargo image
-        path: cargo.7z
+        name: cargo
     - name: "Download Rust .rustup image"
       uses: actions/download-artifact@v1
       with:
-        name: Rust .rustup image
-        path: rustup.7z
+        name: rustup
     - name: "Extract Rust .cargo image"
       run: |
         mkdir "%USERPROFILE%\.cargo"
         cd "%USERPROFILE%\.cargo"
         7z x "%GITHUB_WORKSPACE%/cargo.7z"
+        dir %USERPROFILE%
+        dir %GITHUB_WORKSPACE%
       shell: cmd
     - name: "Extract Rust .rustup image"
       run: |
         mkdir "%USERPROFILE%\.rustup"
         cd "%USERPROFILE%\.rustup"
         7z x "%GITHUB_WORKSPACE%/rustup.7z"
+        dir %USERPROFILE%
+        dir %GITHUB_WORKSPACE%
       shell: cmd
     - name: "Run the program"
       run: cargo +stable run
+
+set GITHUB_WORKSPACE=C:\Users\brian\Downloads
+set USERPROFILE_X=C:\Users\brian\Documents\rusty-pipe\tmp
+
+mkdir "%USERPROFILE_X%\.cargo"
+cd "%USERPROFILE_X%\.cargo"
+7z x "%GITHUB_WORKSPACE%/cargo.7z"
