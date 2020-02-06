@@ -76,10 +76,3 @@ jobs:
       shell: cmd
     - name: "Run the program"
       run: cargo +stable run
-
-set GITHUB_WORKSPACE=C:\Users\brian\Downloads
-set USERPROFILE_X=C:\Users\brian\Documents\rusty-pipe\tmp
-
-mkdir "%USERPROFILE_X%\.cargo"
-cd "%USERPROFILE_X%\.cargo"
-7z x "%GITHUB_WORKSPACE%/cargo.7z"
