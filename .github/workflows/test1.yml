@@ -42,8 +42,8 @@ jobs:
 #    - uses: actions/checkout@master
     - name: Hide Rust
       run: |
-        cd %USERPROFILE%
-        echo %USERPROFILE%
+        dir %USERPROFILE%
+        rmdir "%USERPROFILE%\.cargo"
         dir %USERPROFILE%
 #        rename ".cargo" ".cargo_old"
 #        rename ".rustup" ".rustup_old"
