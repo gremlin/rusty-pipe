@@ -7,11 +7,15 @@ on:
     - ".github/workflows/test1.yml"
 jobs:
   simple_build:
-    name: Simple Build for Windows
+    name: Simple build for Windows
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
+    - name: Remove Rust documentation
+      run: rustup component remove rust-docs
     - name: Install Rust
       run: rustup update stable
+    - name: Remove Rust documentation
+      run: rustup component remove rust-docs
     - name: Run the program
       run: cargo +stable run
