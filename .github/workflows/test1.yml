@@ -43,8 +43,9 @@ jobs:
     - name: Hide Rust
       run: |
         cd %USERPROFILE%
-        rename ".cargo" ".cargo_old"
-        rename ".rustup" ".rustup_old"
+        dir
+#        rename ".cargo" ".cargo_old"
+#        rename ".rustup" ".rustup_old"
       shell: cmd
 #    - name: Download Rust .cargo image
 #      uses: actions/download-artifact@v1
