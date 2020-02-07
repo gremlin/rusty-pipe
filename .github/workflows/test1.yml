@@ -11,17 +11,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-
-    - name: "Run the program"
-      run: cargo +stable run
-
     - name: "Remove Rust documentation"
       run: rustup component remove rust-docs
     - name: "Install Rust"
       run: rustup update stable
-#    - name: "Remove Rust documentation"
-#      run: rustup component remove rust-docs
-#      continue-on-error: true
     - name: "Run the program"
       run: cargo +stable run
     - name: "Archive .cargo"
@@ -74,7 +67,7 @@ jobs:
     - name: "Extract Rust .cargo image"
       run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z" -o"%USERPROFILE%/.cargo" -r *
       shell: cmd
-      working-directory: 
+      working-directory:
 
     - name: "Extract Rust .rustup image"
       run: 7z x "%GITHUB_WORKSPACE%/tmp/rustup.7z" -o"%USERPROFILE%/.rustup" -r *
