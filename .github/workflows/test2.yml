@@ -13,5 +13,7 @@ jobs:
     - uses: actions/checkout@master
     - name: "Install Rust"
       run: rustup update stable
+    - name: Install cargo-wix
+      run: cargo install cargo-wix
     - name: "Run the program"
       run: cargo +stable run
