@@ -1,20 +1,41 @@
+
 name: "Test #3 - Download"
+
 on:
   push:
     paths:
     - ".github/workflows/test3.yml"
+
 jobs:
+
   download_tests:
+
     name: "Download tests"
+
     runs-on: windows-latest
+
     steps:
-    - name: "curl"
+
+    - name: "curl 1"
       run: curl --location --silent --output curl-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
       shell: bash
-#    - name: "wget"
-#      run: wget --output-document=wget-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
-#      shell: bash
-    - name: "PowerShell"
+
+    - name: "PowerShell 1"
       run: Invoke-WebRequest "https://aka.ms/vs/16/release/vc_redist.x64.exe" -OutFile "ps-vc_redist.x64.exe"
+
+    - name: "curl 2"
+      run: curl --location --silent --output curl-cargo.zip https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.zip
+      shell: bash
+
+    - name: "PowerShell 2"
+      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.zip" -OutFile "ps-cargo.zip"
+
+    - name: "curl 3"
+      run: curl --location --silent --output curl-rustup.zip https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.zip
+      shell: bash
+
+    - name: "PowerShell 3"
+      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.zip" -OutFile "ps-rustup.zip"
+
     - name: "Directory listing"
       run: dir
