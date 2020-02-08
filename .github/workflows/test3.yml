@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: "curl"
-      run: curl --location --output curl-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
+      run: curl --location --silent --output curl-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
       shell: bash
 #    - name: "wget"
 #      run: wget --output-document=wget-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
