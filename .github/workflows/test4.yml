@@ -1,0 +1,51 @@
+
+name: "Test #4 - Build using Rust images"
+
+on:
+  push:
+    paths:
+    - "Cargo.toml"
+    - "**.rs"
+    - ".github/workflows/test4.yml"
+
+jobs:
+
+  build:
+    name: "Build using Rust images"
+    runs-on: windows-latest
+
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: "'Remove' Rust (it's presented as a <JUNCTION>)"
+      run: |
+        rmdir "%USERPROFILE%/.cargo"
+        rmdir "%USERPROFILE%/.rustup"
+      shell: cmd
+
+    - name: "Download Rust .cargo image"
+      run: curl --location --silent --output cargo.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z
+      shell: bash
+
+    - name: "Download Rust .rustup image"
+      run: curl --location --silent --output rustup.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z
+      shell: bash
+
+    - name: "Extract Rust .cargo image"
+      run: 7z x cargo.7z -o"%USERPROFILE%/.cargo" -r *
+      shell: cmd
+      working-directory:
+
+    - name: "Extract Rust .rustup image"
+      run: 7z x rustup.7z -o"%USERPROFILE%/.rustup" -r *
+      shell: cmd
+
+    - name: "Sanity check"
+      run: |
+        dir %GITHUB_WORKSPACE% /s
+        dir %USERPROFILE%
+      shell: cmd
+
+    - name: "Run the program"
+      run: cargo +stable run
