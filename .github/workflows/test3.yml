@@ -24,18 +24,18 @@ jobs:
       run: Invoke-WebRequest "https://aka.ms/vs/16/release/vc_redist.x64.exe" -OutFile "ps-vc_redist.x64.exe"
 
     - name: "curl 2"
-      run: curl --location --silent --output curl-cargo.zip https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.zip
+      run: curl --location --silent --output curl-cargo.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z
       shell: bash
 
     - name: "PowerShell 2"
-      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.zip" -OutFile "ps-cargo.zip"
+      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z" -OutFile "ps-cargo.7z"
 
     - name: "curl 3"
-      run: curl --location --silent --output curl-rustup.zip https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.zip
+      run: curl --location --silent --output curl-rustup.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z
       shell: bash
 
     - name: "PowerShell 3"
-      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.zip" -OutFile "ps-rustup.zip"
+      run: Invoke-WebRequest "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z" -OutFile "ps-rustup.7z"
 
     - name: "Directory listing"
       run: dir
