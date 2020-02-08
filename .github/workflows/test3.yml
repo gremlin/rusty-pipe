@@ -11,9 +11,9 @@ jobs:
     - name: "curl"
       run: curl --location --output curl-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
       shell: bash
-    - name: "wget"
-      run: wget --output-document=wget-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
-      shell: bash
+#    - name: "wget"
+#      run: wget --output-document=wget-vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
+#      shell: bash
     - name: "PowerShell"
       run: Invoke-WebRequest "https://aka.ms/vs/16/release/vc_redist.x64.exe" -OutFile "ps-vc_redist.x64.exe"
     - name: "Directory listing"
