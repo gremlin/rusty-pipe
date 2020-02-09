@@ -5,3 +5,8 @@ authors = ["Coding Badly <bcook@rowdydog.com>"]
 edition = "2018"
 
 [dependencies]
+ansi_term = "0"
+args = "2.1"
+base64 = "0.11"
+chrono = { version = "0.4", features = ["rustc-serialize"] }
+getopts = "0.2"
