@@ -6,7 +6,7 @@ on:
     paths:
     - "Cargo.toml"
     - "**.rs"
-    - ".github\workflows\test5.yml"
+    - ".github\\workflows\\test5.yml"
     tags:
     - '*'
 
