@@ -38,3 +38,4 @@ jobs:
       with:
         name: rustup
         path: rustup.7z
+
