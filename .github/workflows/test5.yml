@@ -39,3 +39,4 @@ jobs:
         name: rustup
         path: rustup.7z
 
+# This is a test.
