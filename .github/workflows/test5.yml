@@ -6,9 +6,9 @@ on:
     paths:
     - "Cargo.toml"
     - "**.rs"
-    - ".github\\workflows\\test5.yml"
-    tags:
-    - '*'
+    - ".github/workflows/test5.yml"
+#    tags:
+#    - '*'
 
 jobs:
   prepare_rust_image:
