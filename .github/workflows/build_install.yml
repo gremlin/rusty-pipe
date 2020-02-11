@@ -1,0 +1,15 @@
+name: "Test #6 - Build install on demand"
+on:
+  push:
+    paths:
+    - ".github/workflows/build_install.yml"
+jobs:
+  test_commit_message:
+    name: "Test commit message for [install]."
+    runs-on: windows-latest
+    steps:
+    - name: "Nothing special"
+      run: echo "Whatever, dude!"
+    - name: "Test"
+      run: echo "Pusher wants an install."
+      if: "contains(github.event.head_commit.message, '[install]')"
