@@ -10,6 +10,9 @@ jobs:
     steps:
     - name: "Nothing special"
       run: echo "Whatever, dude!"
-    - name: "Test"
+    - name: "Test positive"
       run: echo "Pusher wants an install."
       if: "contains(github.event.head_commit.message, '[install]')"
+    - name: "Test negative"
+      run: echo "No install for the pusher."
+      if: "!contains(github.event.head_commit.message, '[install]')"
