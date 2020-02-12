@@ -22,10 +22,10 @@ jobs:
       run: rustup update stable
 
     - name: "Install cargo-wix; clone"
-      git clone git@github.com:Coding-Badly/cargo-wix.git
+      run: git clone git@github.com:Coding-Badly/cargo-wix.git
 
     - name: "Install cargo-wix; install"
-      cargo install --path cargo-wix
+      run: cargo install --path cargo-wix
 
     - name: "Download all dependencies"
       run: cargo +stable run
