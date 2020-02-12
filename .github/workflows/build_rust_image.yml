@@ -22,7 +22,8 @@ jobs:
       run: rustup update stable
 
     - name: "Install cargo-wix; clone"
-      run: git clone git@github.com:Coding-Badly/cargo-wix.git
+      run: git clone https://github.com/Coding-Badly/cargo-wix.git
+      # git@github.com:Coding-Badly/cargo-wix.git
 
     - name: "Install cargo-wix; install"
       run: cargo install --path cargo-wix
