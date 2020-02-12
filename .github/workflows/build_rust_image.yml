@@ -1,0 +1,31 @@
+name: "Build downloadable Rust image"
+
+on:
+  push:
+    paths:
+    - "Cargo.toml"
+    - "**.rs"
+    - ".github/workflows/build_rust_image.yml"
+
+jobs:
+  build_rust_image:
+    name: "Build downloadable Rust image for Windows"
+    runs-on: windows-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: "Remove Rust documentation"
+      run: rustup component remove rust-docs
+
+    - name: "Update Rust to the latest stable version"
+      run: rustup update stable
+
+    - name: "Install cargo-wix; clone"
+      git clone git@github.com:Coding-Badly/cargo-wix.git
+
+    - name: "Install cargo-wix; install"
+      cargo install --path cargo-wix
+
+    - name: "Download all dependencies"
+      run: cargo +stable run
