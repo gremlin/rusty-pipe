@@ -13,22 +13,22 @@ jobs:
     runs-on: windows-latest
     steps:
 
-#    - uses: actions/checkout@master
+    - uses: actions/checkout@master
 
-#    - name: "Remove Rust documentation"
-#      run: rustup component remove rust-docs
+    - name: "Remove Rust documentation"
+      run: rustup component remove rust-docs
 
-#    - name: "Update Rust to the latest stable version"
-#      run: rustup update stable
+    - name: "Update Rust to the latest stable version"
+      run: rustup update stable
 
-#    - name: "Install cargo-wix; clone"
-#      run: git clone https://github.com/Coding-Badly/cargo-wix.git
+    - name: "Install cargo-wix; clone"
+      run: git clone https://github.com/Coding-Badly/cargo-wix.git
 
-#    - name: "Install cargo-wix; install"
-#      run: cargo install --path cargo-wix
+    - name: "Install cargo-wix; install"
+      run: cargo install --path cargo-wix
 
-#    - name: "Download all dependencies"
-#      run: cargo fetch
+    - name: "Download all dependencies"
+      run: cargo fetch
 
     - name: "Archive .cargo"
       run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r cargo.7z "$Env:USERPROFILE/.cargo/*"
