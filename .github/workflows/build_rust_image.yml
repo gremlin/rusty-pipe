@@ -36,7 +36,7 @@ jobs:
     - name: "Archive .rustup"
       run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r rustup.7z "$Env:USERPROFILE/.rustup/*"
 
-    - name: Create Release
+    - name: "Create release"
       id: create_release
       uses: actions/create-release@v1
       env:
@@ -48,4 +48,24 @@ jobs:
         draft: false
         prerelease: false
 
-# Fast duplicate test.
+    - name: "Upload cargo.7z"
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./cargo.7z
+        asset_name: cargo.7z
+        asset_content_type: application/x-7z-compressed
+
+    - name: "Upload rustup.7z"
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./rustup.7z
+        asset_name: rustup.7z
+        asset_content_type: application/x-7z-compressed
