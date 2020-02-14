@@ -21,9 +21,11 @@ jobs:
 
     - name: "Download .cargo image"
       run: curl --location --silent --output "%GITHUB_WORKSPACE%/tmp/cargo.7z" "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z"
+      shell: cmd
 
     - name: "Download .rustup image"
       run: curl --location --silent --output "%GITHUB_WORKSPACE%/tmp/rustup.7z" "https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z"
+      shell: cmd
 
     - name: "Extract Rust .cargo image"
       run: 7z x "%GITHUB_WORKSPACE%/tmp/cargo.7z" -o"%USERPROFILE%/.cargo" -r *
