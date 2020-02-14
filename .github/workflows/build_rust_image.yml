@@ -29,6 +29,14 @@ jobs:
         echo ${{ github.run_id }}
         echo ${{ github.sha }}
 
+#  echo refs/heads/master
+#  echo 38963838
+#  echo 8da06389d40320ca09c513372ba793c6b1853963
+#  shell: C:\Program Files\PowerShell\6\pwsh.EXE -command ". '{0}'"
+#refs/heads/master
+#38963838
+#8da06389d40320ca09c513372ba793c6b18539
+
 #    - name: "Remove Rust documentation"
 #      run: rustup component remove rust-docs
 #
