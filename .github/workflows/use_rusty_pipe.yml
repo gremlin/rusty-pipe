@@ -32,3 +32,6 @@ jobs:
     - name: "Extract Rust .rustup image"
       run: 7z x rustup.7z -o"%USERPROFILE%/.rustup" -r *
       shell: cmd
+
+    - name: "Test (nothing should be fetched)"
+      run: cargo fetch
