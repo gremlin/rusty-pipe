@@ -1,0 +1,20 @@
+name: "Use the Rusty Pipe"
+
+on:
+  push:
+    paths:
+    - ".github/workflows/use_rusty_pipe.yml"
+
+jobs:
+  build_using_the_rusty_pipe:
+    name: "Build some stuff using rusty-pipe"
+    runs-on: windows-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: "Download cargo image"
+      run: curl --location --silent --output cargo.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z
+
+    - name: "Download rustup image"
+      run: curl --location --silent --output rustup.7z https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z
