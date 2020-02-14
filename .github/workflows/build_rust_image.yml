@@ -23,71 +23,57 @@ jobs:
 
     - uses: actions/checkout@master
 
-    - name: "Output some stuff"
-      run: |
-        echo ${{ github.ref }}
-        echo ${{ github.run_id }}
-        echo ${{ github.sha }}
+    - name: "Remove Rust documentation"
+      run: rustup component remove rust-docs
 
-#  echo refs/heads/master
-#  echo 38963838
-#  echo 8da06389d40320ca09c513372ba793c6b1853963
-#  shell: C:\Program Files\PowerShell\6\pwsh.EXE -command ". '{0}'"
-#refs/heads/master
-#38963838
-#8da06389d40320ca09c513372ba793c6b18539
+    - name: "Update Rust to the latest stable version"
+      run: rustup update stable
 
-#    - name: "Remove Rust documentation"
-#      run: rustup component remove rust-docs
-#
-#    - name: "Update Rust to the latest stable version"
-#      run: rustup update stable
-#
-#    - name: "Install cargo-wix; clone"
-#      run: git clone https://github.com/Coding-Badly/cargo-wix.git
-#
-#    - name: "Install cargo-wix; install"
-#      run: cargo install --path cargo-wix
-#
-#    - name: "Download all dependencies"
-#      run: cargo fetch
-#
-#    - name: "Archive .cargo"
-#      run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r cargo.7z "$Env:USERPROFILE/.cargo/*"
-#
-#    - name: "Archive .rustup"
-#      run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r rustup.7z "$Env:USERPROFILE/.rustup/*"
-#
-#    - name: "Create release"
-#      id: create_release
-#      uses: actions/create-release@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        tag_name: "0.1.1"
-#        release_name: "Release ${{ github.sha }}"
-#        body: "Second automatic release."
-#        draft: false
-#        prerelease: false
-#
-#    - name: "Upload cargo.7z"
-#      id: upload-release-asset-cargo
-#      uses: actions/upload-release-asset@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        upload_url: ${{ steps.create_release.outputs.upload_url }}
-#        asset_path: ./cargo.7z
-#        asset_name: cargo.7z
-#        asset_content_type: application/x-7z-compressed
-#
-#    - name: "Upload rustup.7z"
-#      id: upload-release-asset-rustup
-#      uses: actions/upload-release-asset@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        upload_url: ${{ steps.create_release.outputs.upload_url }}
-#        asset_path: ./rustup.7z
-#        asset_name: rustup.7z
-#        asset_content_type: application/x-7z-compressed
+    - name: "Install cargo-wix; clone"
+      run: git clone https://github.com/Coding-Badly/cargo-wix.git
+
+    - name: "Install cargo-wix; install"
+      run: cargo install --path cargo-wix
+
+    - name: "Download all dependencies"
+      run: cargo fetch
+
+    - name: "Archive .cargo"
+      run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r cargo.7z "$Env:USERPROFILE/.cargo/*"
+
+    - name: "Archive .rustup"
+      run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r rustup.7z "$Env:USERPROFILE/.rustup/*"
+
+    - name: "Create release"
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: rid_${{ github.run_id }}
+        release_name: "Release ${{ github.run_id }}"
+        body: "${{ github.run_id }}"
+        draft: false
+        prerelease: false
+
+    - name: "Upload cargo.7z"
+      id: upload-release-asset-cargo
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./cargo.7z
+        asset_name: cargo.7z
+        asset_content_type: application/x-7z-compressed
+
+    - name: "Upload rustup.7z"
+      id: upload-release-asset-rustup
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./rustup.7z
+        asset_name: rustup.7z
+        asset_content_type: application/x-7z-compressed
