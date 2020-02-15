@@ -1,0 +1,28 @@
+name: "Nothing special"
+
+on:
+  push:
+    paths:
+    - "Cargo.toml"
+    - "**.rs"
+    - ".github/workflows/nothing_special.yml"
+
+jobs:
+  simple_build:
+    name: "Simple build"
+    runs-on: windows-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: "Update Rust to the latest stable version"
+      run: rustup update stable
+
+    - name: "Install cargo-wix; clone"
+      run: git clone https://github.com/Coding-Badly/cargo-wix.git
+
+    - name: "Install cargo-wix; install"
+      run: cargo install --path cargo-wix
+
+    - name: "Download all dependencies"
+      run: cargo fetch
