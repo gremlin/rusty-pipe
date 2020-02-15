@@ -33,8 +33,16 @@ jobs:
       run: 7z x rustup.7z -o"%USERPROFILE%/.rustup" -r *
       shell: cmd
 
-    - name: "Test (nothing should be fetched)"
-      run: cargo fetch
+#    - name: "Test (nothing should be fetched)"
+#      run: cargo fetch
 
-    - name: "Ensure signing is possible"
-      run: cargo wix sign
+#    - name: "Ensure signing is possible"
+#      run: cargo wix sign
+
+    - name: "Ensure signing is possible; step 1"
+      run: dir "%USERPROFILE%/.cargo/bin"
+      shell: cmd
+
+    - name: "Ensure signing is possible; step 2"
+      run: cat "%USERPROFILE%/.cargo/.crates.toml"
+      shell: cmd
