@@ -40,9 +40,12 @@ jobs:
 #      run: cargo wix sign
 
     - name: "Ensure signing is possible; step 1"
+      run: cargo wix help
+
+    - name: "Ensure signing is possible; step 2"
       run: dir "%USERPROFILE%/.cargo/bin"
       shell: cmd
 
-    - name: "Ensure signing is possible; step 2"
+    - name: "Ensure signing is possible; step 3"
       run: cat "%USERPROFILE%/.cargo/.crates.toml"
       shell: cmd
