@@ -35,3 +35,6 @@ jobs:
 
     - name: "Test (nothing should be fetched)"
       run: cargo fetch
+
+    - name: "Ensure signing is possible"
+      run: cargo wix sign
