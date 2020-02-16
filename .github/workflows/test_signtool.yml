@@ -1,0 +1,16 @@
+name: "Play with SignTool"
+
+on:
+  push:
+    paths:
+    - ".github/workflows/test_signtool.yml"
+
+jobs:
+  test_signtool:
+    name: "Play with SignTool"
+    runs-on: windows-latest
+    steps:
+
+    - name: "Just run it"
+      run: "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x64/signtool.exe"
+#      sign /f "current.p12" /p "${{ secrets.CODE_SIGNING_PASSWORD_CURRENT }}" /fd SHA256 /d "Gremlin Agent" /du "https://www.gremlin.com/" /tr "http://timestamp.digicert.com" /td SHA256 /v /debug "./target/release/gremlind.exe"
