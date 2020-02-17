@@ -1,11 +1,22 @@
 name: "Build downloadable Rust image"
 
+# The downloads are available from...
+# https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z
+# https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z
+#
+# Don't forget to follow redirects!
+
 on:
   push:
     paths:
+    - "Cargo.lock"
     - "Cargo.toml"
     - "**.rs"
     - ".github/workflows/build_rust_image.yml"
+#    tags:
+#    - "*"
+  schedule:
+    - cron:  '0 8 * * *'
 
 jobs:
   build_rust_image:
@@ -28,7 +39,7 @@ jobs:
       run: cargo install --path cargo-wix
 
     - name: "Download all dependencies"
-      run: cargo fetch
+      run: cargo fetch --locked
 
     - name: "Archive .cargo"
       run: 7z a -bt -t7z -m0=lzma2 -mx=9 -r cargo.7z "$Env:USERPROFILE/.cargo/*"
@@ -42,12 +53,30 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: "First automatic release."
+        tag_name: rid_${{ github.run_id }}
+        release_name: "Release ${{ github.run_id }}"
+        body: "${{ github.run_id }}"
         draft: false
         prerelease: false
 
-# https://github.com/actions/upload-release-asset
-# application/octet-stream
-# https://github.com/Coding-Badly/rusty-pipe/releases
+    - name: "Upload cargo.7z"
+      id: upload-release-asset-cargo
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./cargo.7z
+        asset_name: cargo.7z
+        asset_content_type: application/x-7z-compressed
+
+    - name: "Upload rustup.7z"
+      id: upload-release-asset-rustup
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./rustup.7z
+        asset_name: rustup.7z
+        asset_content_type: application/x-7z-compressed
