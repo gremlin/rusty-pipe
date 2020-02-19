@@ -16,7 +16,7 @@ on:
 #    tags:
 #    - "*"
   schedule:
-    - cron:  '0 8 * * *'
+    - cron:  '0 9 * * *'
 
 jobs:
   build_rust_image:
