@@ -1,8 +1,8 @@
 name: "Build downloadable Rust image"
 
 # The downloads are available from...
-# https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/cargo.7z
-# https://github.com/Coding-Badly/rusty-pipe/releases/latest/download/rustup.7z
+# https://github.com/gremlin/rusty-pipe/releases/latest/download/cargo.7z
+# https://github.com/gremlin/rusty-pipe/releases/latest/download/rustup.7z
 #
 # Don't forget to follow redirects!
 
