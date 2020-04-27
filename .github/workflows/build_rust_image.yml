@@ -30,6 +30,7 @@ jobs:
 
     - name: "Remove Rust documentation"
       run: rustup component remove rust-docs
+      continue-on-error: true
 
     - name: "Update Rust to the latest stable version"
       run: rustup update stable
