@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use std::path::PathBuf;
 
 use cargo_lock::{Lockfile, Package};
 
@@ -34,8 +35,13 @@ impl std::hash::Hash for PackageTracker<'_> {
     }
 }
 
-fn main() {
-    let lockfile = Lockfile::load("C:/ProjectsSplit/Gremlin/agent/Cargo.lock").unwrap();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let base_path = PathBuf::from(std::env::var("AGENT")?);
+
+    let mut lock_path = base_path.clone();
+    lock_path.push("Cargo.lock");
+
+    let lockfile = Lockfile::load(lock_path).unwrap();
     println!("number of dependencies: {}", lockfile.packages.len());
     let mut newest = HashSet::<PackageTracker>::new();
     for package in &lockfile.packages {
@@ -44,9 +50,9 @@ fn main() {
             package,
         };
         if let Some(existing) = newest.get(&candidate) {
-            println!("{} is a duplicate.", package.name);
+            // rmv println!("{} is a duplicate.", package.name);
             if candidate.package.version > existing.package.version {
-                println!("{:?} > {:?}", candidate.package.version, existing.package.version);
+                // rmv println!("{:?} > {:?}", candidate.package.version, existing.package.version);
                 newest.replace(candidate);
             }
         }
@@ -57,14 +63,21 @@ fn main() {
     let mut newest: Vec<PackageTracker> = newest.drain().collect();
     newest.sort();
     for tracker in &newest {
-        println!("{} = {}.{}.{}",
-            tracker.package.name,
-            tracker.package.version.major, tracker.package.version.minor, tracker.package.version.patch);
-        // cargo-lock = "4.0.1"
+        if !tracker.package.name.as_str().starts_with("gremlin")
+            && !tracker.package.name.as_str().starts_with("bright-light")
+            && !tracker.package.name.as_str().starts_with("fwpmu")
+        {
+            println!("{} = \"{}.{}.{}\"",
+                tracker.package.name,
+                tracker.package.version.major, tracker.package.version.minor, tracker.package.version.patch);
+            // cargo-lock = "4.0.1"
+        }
     }
+
 /*
     for (key, value) in std::env::vars() {
 		println!("{}={}", key, value);
 	}
 */
+    Ok(())
 }
