@@ -1,6 +1,10 @@
 [workspace]
 
 members = [
-		"mirror",
-		"refresh",
+    "mirror",
+    "refresh",
+]
+
+exclude = [
+    "cargo-wix",
 ]
